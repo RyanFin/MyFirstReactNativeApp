@@ -24,7 +24,7 @@ function HomeScreen(props) {
         }}
       />
       {/* not a self-closing element, unlike a button */}
-      <TouchableOpacity onPress={() => console.log("List Pressed")}>
+      <TouchableOpacity onPress={() => props.navigation.navigate("List")}>
         <Text>Go to List Demo</Text>
       </TouchableOpacity>
     </>
