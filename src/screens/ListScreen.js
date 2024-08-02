@@ -10,15 +10,18 @@ export default function ListScreen() {
     { name: "Friend #5", key: "5" },
     { name: "Friend #6", key: "6" },
     { name: "Friend #7", key: "7" },
+    { name: "Friend #8", key: "8" },
   ];
   return (
     <FlatList
+      horizontal
+      showsHorizontalScrollIndicator={false}
       //   keyExtractor={({ name }) => name}
       keyExtractor={(friend) => friend.name}
       data={friends}
       renderItem={({ item, index }) => {
         return (
-          <Text>
+          <Text style={styles.textStyle}>
             {index} : {item.name}
           </Text>
         );
@@ -27,4 +30,8 @@ export default function ListScreen() {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  textStyle: {
+    marginVertical: 50,
+  },
+});
