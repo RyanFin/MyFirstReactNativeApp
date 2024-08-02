@@ -1,9 +1,11 @@
 import React from "react";
-import { Text, StyleSheet, View, Button } from "react-native";
+import { Text, StyleSheet, View, Button, TouchableOpacity } from "react-native";
 import ComponentsScreen from "./ComponentScreen";
 import RyanComponent from "./RyanComponent";
 
-const HomeScreen = () => {
+function HomeScreen(props) {
+  console.log(props.navigation);
+  console.log(props);
   return (
     <>
       {/* <Text style={styles.text}>
@@ -13,15 +15,21 @@ const HomeScreen = () => {
       {/* <RyanComponent /> */}
 
       <Text style={styles.text}>Welcome to my first React Native App!</Text>
+      {/* button is a self-closing element */}
       <Button
         title="Go to Components Demo"
         onPress={() => {
-          console.log("button pressed.");
+          // console.log("button pressed.");
+          props.navigation.navigate("Components");
         }}
       />
+      {/* not a self-closing element, unlike a button */}
+      <TouchableOpacity onPress={() => console.log("List Pressed")}>
+        <Text>Go to List Demo</Text>
+      </TouchableOpacity>
     </>
   );
-};
+}
 
 const styles = StyleSheet.create({
   text: {
