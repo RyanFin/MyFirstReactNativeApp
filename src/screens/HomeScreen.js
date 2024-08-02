@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, View, Button } from "react-native";
 import ComponentsScreen from "./ComponentScreen";
 import RyanComponent from "./RyanComponent";
 
@@ -10,7 +10,15 @@ const HomeScreen = () => {
         Can run in iOS and Android at the same time
       </Text> */}
       {/* <ComponentsScreen /> */}
-      <RyanComponent />
+      {/* <RyanComponent /> */}
+
+      <Text style={styles.text}>Welcome to my first React Native App!</Text>
+      <Button
+        title="Go to Components Demo"
+        onPress={() => {
+          console.log("button pressed.");
+        }}
+      />
     </>
   );
 };
