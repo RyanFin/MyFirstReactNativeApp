@@ -9,24 +9,44 @@ export default function SquareScreen() {
 
   const COLOUR_INCREMENT = 15;
 
-  console.log(red);
+  function setColour(colour, change) {
+    // colour is going to be equal to red, green or blue as a string
+    // change is the amount we want to change the colour by (+15, -15)
+    switch (colour) {
+      case "red":
+        red + change > 255 || red + change < 0 ? null : setRed(red + change);
+        return;
+      case "green":
+        green + change > 255 || green + change < 0
+          ? null
+          : setGreen(green + change);
+        return;
+      case "blue":
+        blue + change > 255 || blue + change < 0
+          ? null
+          : setBlue(blue + change);
+        return;
+      default:
+        return;
+    }
+  }
 
   return (
     <View>
       <ColourCounter
         colour="Red"
-        onIncrease={() => setRed(red + COLOUR_INCREMENT)}
-        onDecrease={() => setRed(red - COLOUR_INCREMENT)}
+        onIncrease={() => setColour("red", COLOUR_INCREMENT)}
+        onDecrease={() => setColour("red", -1 * COLOUR_INCREMENT)}
       />
       <ColourCounter
         colour="Blue"
-        onIncrease={() => setBlue(blue + COLOUR_INCREMENT)}
-        onDecrease={() => setBlue(blue - COLOUR_INCREMENT)}
+        onIncrease={() => setColour("blue", COLOUR_INCREMENT)}
+        onDecrease={() => setColour("blue", -1 * COLOUR_INCREMENT)}
       />
       <ColourCounter
         colour="Green"
-        onIncrease={() => setGreen(green + COLOUR_INCREMENT)}
-        onDecrease={() => setGreen(green - COLOUR_INCREMENT)}
+        onIncrease={() => setColour("green", COLOUR_INCREMENT)}
+        onDecrease={() => setColour("green", -1 * COLOUR_INCREMENT)}
       />
       <View
         style={{
