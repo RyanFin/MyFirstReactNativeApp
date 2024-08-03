@@ -34,6 +34,11 @@ function HomeScreen({ navigation }) {
         onPress={() => navigation.navigate("Counter")}
       />
 
+      <Button
+        title="Go to Colour Screen"
+        onPress={() => navigation.navigate("ColourDemo")}
+      />
+
       {/* not a self-closing element, unlike a button */}
       {/* <TouchableOpacity onPress={() => props.navigation.navigate("List")}>
         <Text>Go to List Demo</Text>

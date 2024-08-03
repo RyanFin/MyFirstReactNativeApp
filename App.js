@@ -6,6 +6,7 @@ import RyanComponent from "./src/screens/RyanComponent";
 import ListScreen from "./src/screens/ListScreen";
 import ImageScreen from "./src/screens/ImageScreen";
 import CounterScreen from "./src/screens/CounterScreen";
+import ColourScreen from "./src/screens/ColourScreen";
 
 const navigator = createStackNavigator(
   {
@@ -16,6 +17,7 @@ const navigator = createStackNavigator(
     List: ListScreen,
     ImageScr: ImageScreen,
     Counter: CounterScreen,
+    ColourDemo: ColourScreen,
   },
   {
     initialRouteName: "Home",
