@@ -11,6 +11,11 @@ function reducer(state, action) {
 
   switch (action.colourToChange) {
     case "red":
+      // add validation check
+      if (state.red + action.amount > 255 || state.red + action.amount < 0) {
+        // must return state otherwise you will get an undefined error
+        return state;
+      }
       // no change has been made to state, we have simple copied the values from state and incremented the value of the red attribute by the specified amount
       return { ...state, red: state.red + action.amount };
     case "green":
