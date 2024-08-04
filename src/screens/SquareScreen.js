@@ -1,6 +1,6 @@
 import { AppState, StyleSheet, Text, View } from "react-native";
 import ColourCounter from "../components/ColourCounter";
-import { useReducer, useState } from "react";
+import { useReducer } from "react";
 
 const COLOUR_INCREMENT = 15;
 
@@ -25,6 +25,7 @@ function reducer(state, action) {
         return state;
       }
       return { ...state, green: state.green + action.payload };
+
     case "change_blue":
       return state.blue + action.payload > 255 ||
         state.blue + action.payload < 0
