@@ -10,13 +10,13 @@ function reducer(state, action) {
   // action === {type: 'red' || 'green' || 'blue', payload: 15 || -15}
 
   switch (action.type) {
-    case "red":
+    case "change_red":
       // add validation check
       return state.red + action.payload > 255 || state.red + action.payload < 0
         ? state
         : { ...state, red: state.red + action.payload };
 
-    case "green":
+    case "change_green":
       // this method is equivalent code to the code above :)
       if (
         state.green + action.payload > 255 ||
@@ -25,7 +25,7 @@ function reducer(state, action) {
         return state;
       }
       return { ...state, green: state.green + action.payload };
-    case "blue":
+    case "change_blue":
       return state.blue + action.payload > 255 ||
         state.blue + action.payload < 0
         ? state
@@ -49,25 +49,29 @@ export default function SquareScreen() {
     <View>
       <ColourCounter
         colour="Red"
-        onIncrease={() => dispatch({ type: "red", payload: COLOUR_INCREMENT })}
+        onIncrease={() =>
+          dispatch({ type: "change_red", payload: COLOUR_INCREMENT })
+        }
         onDecrease={() =>
-          dispatch({ type: "red", payload: -1 * COLOUR_INCREMENT })
+          dispatch({ type: "change_red", payload: -1 * COLOUR_INCREMENT })
         }
       />
       <ColourCounter
         colour="Blue"
-        onIncrease={() => dispatch({ type: "blue", payload: COLOUR_INCREMENT })}
+        onIncrease={() =>
+          dispatch({ type: "change_blue", payload: COLOUR_INCREMENT })
+        }
         onDecrease={() =>
-          dispatch({ type: "blue", payload: -1 * COLOUR_INCREMENT })
+          dispatch({ type: "change_blue", payload: -1 * COLOUR_INCREMENT })
         }
       />
       <ColourCounter
         colour="Green"
         onIncrease={() =>
-          dispatch({ type: "green", payload: COLOUR_INCREMENT })
+          dispatch({ type: "change_green", payload: COLOUR_INCREMENT })
         }
         onDecrease={() =>
-          dispatch({ type: "green", payload: -1 * COLOUR_INCREMENT })
+          dispatch({ type: "change_green", payload: -1 * COLOUR_INCREMENT })
         }
       />
       <View
