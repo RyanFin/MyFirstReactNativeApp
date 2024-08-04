@@ -1,52 +1,65 @@
-import { StyleSheet, Text, View } from "react-native";
+import { AppState, StyleSheet, Text, View } from "react-native";
 import ColourCounter from "../components/ColourCounter";
-import { useState } from "react";
+import { useReducer, useState } from "react";
 
-export default function SquareScreen() {
-  const [red, setRed] = useState(0);
-  const [green, setGreen] = useState(0);
-  const [blue, setBlue] = useState(0);
+const COLOUR_INCREMENT = 15;
 
-  const COLOUR_INCREMENT = 15;
+function reducer(state, action) {
+  // state is equsl to an object where {red: number, green: number, blue: number}
+  // action: how should we change our state object (update as in increase, decrease colours etc.)
+  // action === {colourToChange: 'red' || 'green' || 'blue', amount: 15 || -15}
 
-  function setColour(colour, change) {
-    // colour is going to be equal to red, green or blue as a string
-    // change is the amount we want to change the colour by (+15, -15)
-    switch (colour) {
-      case "red":
-        red + change > 255 || red + change < 0 ? null : setRed(red + change);
-        return;
-      case "green":
-        green + change > 255 || green + change < 0
-          ? null
-          : setGreen(green + change);
-        return;
-      case "blue":
-        blue + change > 255 || blue + change < 0
-          ? null
-          : setBlue(blue + change);
-        return;
-      default:
-        return;
-    }
+  switch (action.colourToChange) {
+    case "red":
+      // no change has been made to state, we have simple copied the values from state and incremented the value of the red attribute by the specified amount
+      return { ...state, red: state.red + action.amount };
+    case "green":
+      return { ...state, green: state.green + action.amount };
+    case "blue":
+      return { ...state, blue: state.blue + action.amount };
+    default:
+      return state;
   }
+}
+export default function SquareScreen() {
+  const initialState = {
+    red: 0,
+    green: 0,
+    blue: 0,
+  };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+  //   destructure state
+  const { red, green, blue } = state;
 
   return (
     <View>
       <ColourCounter
         colour="Red"
-        onIncrease={() => setColour("red", COLOUR_INCREMENT)}
-        onDecrease={() => setColour("red", -1 * COLOUR_INCREMENT)}
+        onIncrease={() =>
+          dispatch({ colourToChange: "red", amount: COLOUR_INCREMENT })
+        }
+        onDecrease={() =>
+          dispatch({ colourToChange: "red", amount: -1 * COLOUR_INCREMENT })
+        }
       />
       <ColourCounter
         colour="Blue"
-        onIncrease={() => setColour("blue", COLOUR_INCREMENT)}
-        onDecrease={() => setColour("blue", -1 * COLOUR_INCREMENT)}
+        onIncrease={() =>
+          dispatch({ colourToChange: "blue", amount: COLOUR_INCREMENT })
+        }
+        onDecrease={() =>
+          dispatch({ colourToChange: "blue", amount: -1 * COLOUR_INCREMENT })
+        }
       />
       <ColourCounter
         colour="Green"
-        onIncrease={() => setColour("green", COLOUR_INCREMENT)}
-        onDecrease={() => setColour("green", -1 * COLOUR_INCREMENT)}
+        onIncrease={() =>
+          dispatch({ colourToChange: "green", amount: COLOUR_INCREMENT })
+        }
+        onDecrease={() =>
+          dispatch({ colourToChange: "green", amount: -1 * COLOUR_INCREMENT })
+        }
       />
       <View
         style={{
