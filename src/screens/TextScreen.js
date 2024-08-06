@@ -2,22 +2,30 @@ import { useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function TextScreen() {
-  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const MIN_CHARS = 5;
   return (
     <View>
-      <Text> Enter a name: </Text>
+      <Text> Enter a password: </Text>
       <TextInput
         style={styles.input}
         //   prevent iOS and Android from capitalising our characters
         autoCapitalize="none"
         autoCorrect={false}
-        value={name}
+        value={password}
         onChangeText={(e) => {
-          setName(e);
-          console.log(name);
+          setPassword(e);
+          console.log(password.length);
         }}
       />
-      <Text>My name is: {name}</Text>
+      <Text>
+        My password is: {password}({password.length})
+      </Text>
+      {password.length < 5 ? (
+        <Text style={{ color: "red" }}>
+          Enter a password longer than 5 characters please...
+        </Text>
+      ) : null}
     </View>
   );
 }
