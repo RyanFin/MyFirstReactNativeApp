@@ -44,6 +44,11 @@ function HomeScreen({ navigation }) {
         onPress={() => navigation.navigate("Square")}
       />
 
+      <Button
+        title="Go to Text Screen"
+        onPress={() => navigation.navigate("TextScr")}
+      />
+
       {/* not a self-closing element, unlike a button */}
       {/* <TouchableOpacity onPress={() => props.navigation.navigate("List")}>
         <Text>Go to List Demo</Text>
